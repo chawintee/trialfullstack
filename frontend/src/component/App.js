@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
+import axios from "../config/axios";
 
 function App() {
 
@@ -13,14 +14,19 @@ function App() {
     // console.log(inputText)
   }
 
-  const addToList = (e) => {
+  const addToList = async (e) => {
     // console.log(e.key)
     if(e.key === "Enter" && inputText !== ""){
       const inputObj = {id: idx,task: inputText};
+            const body = {
+              task: inputText,
+            }
+            await axios.post("/t",body);
       setList([...list,inputObj]);
-      setIdx(idx+1)
-      console.log(list)
-      setInputText("")
+      // fetchData();
+      setIdx(idx+1);
+      console.log(list);
+      setInputText("");
     }
   }
   
