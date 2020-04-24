@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import './App.css';
 import axios from "../config/axios";
 
@@ -14,16 +14,35 @@ function App() {
     // console.log(inputText)
   }
 
+  //SHOW(GET)
+
+  const fetchData = async () => {
+    const result = await axios.get("/t");
+    setList(result.data);
+    console.log(list);
+    
+  }
+
+  //use effect
+
+  useEffect(()=> {
+    fetchData();
+  },[]);
+
+
+
+  //ADD(CREATE)
+
   const addToList = async (e) => {
     // console.log(e.key)
     if(e.key === "Enter" && inputText !== ""){
-      const inputObj = {id: idx,task: inputText};
+      // const inputObj = {id: idx,task: inputText};
             const body = {
               task: inputText,
             }
             await axios.post("/t",body);
-      setList([...list,inputObj]);
-      // fetchData();
+      // setList([...list,inputObj]);
+      fetchData();
       setIdx(idx+1);
       console.log(list);
       setInputText("");
@@ -35,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <ul>
-        {list.map(ele => <li key={ele.id}>{ele.task}</li>) }
+  {list.map(ele => <li key={ele.id}>{ele.task}  {ele.post_code} <img src={ele.profile_picture}/> </li>) }
       </ul>
       <input onChange={inputTextFn} value={inputText} onKeyPress={addToList}/>
       <button>Add</button>

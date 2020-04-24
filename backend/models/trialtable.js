@@ -3,6 +3,12 @@ module.exports = (sequelize, DataTypes) => {
         task: {
             type: DataTypes.STRING
         },
+        post_code : {
+            type: DataTypes.INTEGER
+        },
+        profile_picture : {
+            type: DataTypes.STRING
+        }
 
     })
 
