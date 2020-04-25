@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         profile_picture : {
             type: DataTypes.STRING
+        },
+        edit_status : {
+            type: DataTypes.BOOLEAN
         }
 
     })

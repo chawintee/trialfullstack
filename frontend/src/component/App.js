@@ -50,6 +50,37 @@ function App() {
   }
   
 
+  //Edit (UPDATE)
+
+  
+  const onClickToShowInput = async (targetId,editStatus) => {
+    // console.log(targetId)
+    // console.log(editStatus)
+    const body = {
+      edit_status: !editStatus,
+    }
+    await axios.put(`/t/${targetId}`,body);
+    fetchData();
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // DELETE (DELETE)
 
   const onDeleteList = async (targetId) => {
@@ -77,6 +108,7 @@ function App() {
   <li key={ele.id}>{ele.task}  {ele.post_code} 
   <img src={ele.profile_picture} style={{width:"20px" , height:"20px" } }/> 
   <button onClick={()=>onDeleteList(ele.id)} >Del</button>
+  {ele.edit_status ? <input /> : <button onClick={()=>onClickToShowInput(ele.id,ele.edit_status)} >Edit</button>}
   </li>) }
       </ul>
       <input onChange={inputTextFn} value={inputText} onKeyPress={addToList}/>
