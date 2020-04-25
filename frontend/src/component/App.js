@@ -26,7 +26,7 @@ function App() {
   //use effect
 
   useEffect(()=> {
-    fetchData();
+    fetchData()
   },[]);
 
 
@@ -50,11 +50,39 @@ function App() {
   }
   
 
+  // DELETE (DELETE)
+
+  const onDeleteList = async (targetId) => {
+    
+    const body = {
+      id: targetId,
+      task: "Hello",
+    }
+    //  axios.delete("/t",body);
+    // fetchData();
+    console.log(body.id)
+    // console.log(typeof(body.id))
+
+  }
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="App">
       <ul>
-  {list.map(ele => <li key={ele.id}>{ele.task}  {ele.post_code} <img src={ele.profile_picture}/> </li>) }
+  {list.map(ele => 
+  <li key={ele.id}>{ele.task}  {ele.post_code} 
+  <img src={ele.profile_picture} style={{width:"20px" , height:"20px" } }/> 
+  <button onClick={()=>onDeleteList(ele.id)} >Del</button>
+  </li>) }
       </ul>
       <input onChange={inputTextFn} value={inputText} onKeyPress={addToList}/>
       <button>Add</button>

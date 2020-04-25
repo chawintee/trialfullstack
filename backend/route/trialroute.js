@@ -43,10 +43,12 @@ router.get('/',(req,res) => {
 //Delete
 
 
-router.delete('/',(req,res)=>{
-    const targetId = Number(req.body.id)
+router.delete("/:id",(req,res)=>{
+    const targetId = Number(req.params.id);
+    // console.log(targetId);
+    // const targetId = Number(req.body.id);
     db.task
-    .destroy({where : {id: targetId}})
+    .destroy({where : { id: targetId }})
     .then(result => {
         res.status(204).send()
     })
