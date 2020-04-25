@@ -54,14 +54,9 @@ function App() {
 
   const onDeleteList = async (targetId) => {
     
-    const body = {
-      id: targetId,
-      task: "Hello",
-    }
-    //  axios.delete("/t",body);
-    // fetchData();
-    console.log(body.id)
-    // console.log(typeof(body.id))
+    console.log(targetId)
+    await axios.delete(`/t/${targetId}`);
+    fetchData();
 
   }
 
